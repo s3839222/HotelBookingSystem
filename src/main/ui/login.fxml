@@ -35,7 +35,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="registerButton" layoutX="124.0" layoutY="173.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
+      <Button fx:id="createAccountStage" layoutX="124.0" layoutY="173.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
       <Button fx:id="cancelButton" layoutX="194.0" layoutY="173.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" />
 
 
