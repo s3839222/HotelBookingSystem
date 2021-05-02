@@ -3,6 +3,7 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import main.model.LoginModel;
+import main.model.RegisterModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -40,9 +43,14 @@ public class LoginController implements Initializable {
 
     }
 
-    public  void registerButtonAction(ActionEvent event){
+    public  void registerButtonAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/register.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(root));
         createAccountStage();
     }
+
     /* login Action method
        check if user input is the same as database.
      */
