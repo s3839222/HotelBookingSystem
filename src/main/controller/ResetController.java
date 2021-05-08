@@ -1,23 +1,30 @@
 package main.controller;
 
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import main.SQLConnection;
 import main.model.LoginModel;
+import main.model.ResetModel;
 //import main.model.RegisterModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 public class ResetController implements Initializable {
 
-    public LoginModel loginModel = new LoginModel();
+    public ResetModel resetModel = new ResetModel();
     @FXML
     private Label isConnected;
     @FXML
@@ -31,7 +38,7 @@ public class ResetController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources){
 
-        if (loginModel.isDbConnected()){
+        if (resetModel.isDbConnected()){
             isConnected.setText("Connected");
         }else{
             isConnected.setText("Not Connected");
@@ -41,33 +48,49 @@ public class ResetController implements Initializable {
 
     public void Reset(ActionEvent event){
         Connection connection = SQLConnection.getConnection().connect();
-//
+
         String username =txtUsername.getText();
         String answer =txtAnswer.getText();
         String newPassword =txtNewPassword.getText();
-        PreparedStatement preparedStatement = null;
-        //ResultSet resultSet=null;
-        String query = "UPDATE employee SET password =? WHERE username = ? AND secret_answer =?";
 
         try {
-//            Statement statement = connection.createStatement();
-//            if (loginModel.isLogin(txtUsername.getText(),txtAnswer.getText())){
-//                int status = statement.executeUpdate("insert into employee (name, surname, username, password) " +
-//                        "values ('"+firstname+"','"+surname+"', '"+username+"', '"+password+"')");
-//                isConnected.setText("Reset is successfully");
-//
-//
-//            }else{
-//                isConnected.setText("username or security answer is incorrect");
-//            }
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, newPassword);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, answer);
+            if (resetModel.isReset(newPassword, username, answer)){
 
-            preparedStatement.executeUpdate();
+                isConnected.setText("Password reset");
+
+
+            }else{
+                isConnected.setText("username or answer is incorrect");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+//
+//        String username =txtUsername.getText();
+//        String answer =txtAnswer.getText();
+//        String newPassword =txtNewPassword.getText();
+//        PreparedStatement preparedStatement = null;
+//        //ResultSet resultSet=null;
+//        String query = "UPDATE employee SET password =? WHERE username = ? AND secret_answer =?";
+//
+//        try {
+////
+//            preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setString(1, newPassword);
+//            preparedStatement.setString(2, username);
+//            preparedStatement.setString(3, answer);
+//
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public void cancelButtonAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

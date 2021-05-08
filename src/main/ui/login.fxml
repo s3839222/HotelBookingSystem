@@ -8,12 +8,12 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LoginController">
     <children>
-            <Label fx:id="isConnected" layoutX="23.0" layoutY="173.0" text="Status">
+            <Label fx:id="isConnected" layoutX="29.0" layoutY="35.0" text="Status">
 
             </Label>
       <TextField fx:id="txtUsername" layoutX="104.0" layoutY="53.0" promptText="Username" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="35.5" AnchorPane.topAnchor="53.0" />
       <PasswordField fx:id="txtPassword" layoutX="104.0" layoutY="89.0" promptText="Password" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="35.5" AnchorPane.topAnchor="89.0" />
-      <Button defaultButton="true" layoutX="126.0" layoutY="140.0" mnemonicParsing="false" onAction="#Login" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.5" AnchorPane.topAnchor="140.0">
+      <Button defaultButton="true" layoutX="126.0" layoutY="134.0" mnemonicParsing="false" onAction="#Login" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.5" AnchorPane.topAnchor="134.0">
          <effect>
             <Lighting bumpInput="$null">
                <light>
@@ -35,8 +35,13 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="createAccountStage" layoutX="124.0" layoutY="173.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
-      <Button fx:id="cancelButton" layoutX="194.0" layoutY="173.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" />
+      <Button fx:id="createAccountStage" layoutX="124.0" layoutY="169.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
+      <Button fx:id="cancelButton" layoutX="204.0" layoutY="169.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" />
+      <Button layoutX="184.0" layoutY="134.0" mnemonicParsing="false" onAction="#resetButtonAction" text="Reset Password">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
 
 
     </children>

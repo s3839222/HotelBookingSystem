@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import main.model.LoginModel;
-import main.model.RegisterModel;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,11 +44,18 @@ public class LoginController implements Initializable {
     }
 
     public  void registerButtonAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/register.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/register.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(root));
-        createAccountStage();
+        stage.show();
+    }
+    public  void resetButtonAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/reset.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     /* login Action method
@@ -75,18 +82,7 @@ public class LoginController implements Initializable {
         stage.close();
     }
 
-    public void createAccountStage(){
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("ui/register.fxml"));
-            Stage registerStage = new Stage();
-            Scene registerScene = new Scene(root);
-            registerStage.setScene(registerScene);
-            registerStage.show();
-        }catch(Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
+
 
 
 
