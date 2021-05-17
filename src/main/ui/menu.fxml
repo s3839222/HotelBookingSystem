@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.MenuController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.MenuController">
    <children>
-      <MenuBar layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="566.0">
+      <MenuBar fx:id="menubar" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="566.0">
         <menus>
           <Menu mnemonicParsing="false" text="Account">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Manage Account" />
+               </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Booking">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem fx:id="booking" mnemonicParsing="false" onAction="#bookingButtonAction" text="Make/Cancel Booking" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Table Allocation">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="View" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Report">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Booking" />
+                  <MenuItem mnemonicParsing="false" text="Employee" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Lockdown">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Lockdown" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Sign Out">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" onAction="#bookingButtonAction" text="Sign Out" />
               </items>
             </Menu>
         </menus>
       </MenuBar>
+      <Button layoutX="94.0" layoutY="107.0" mnemonicParsing="false" onAction="#bookingButtonAction" text="Booking" />
    </children>
 </AnchorPane>

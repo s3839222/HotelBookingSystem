@@ -16,10 +16,11 @@ import main.model.LoginModel;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+    Connection connection;
     public LoginModel loginModel = new LoginModel();
     @FXML
     private Label isConnected;
@@ -67,12 +68,25 @@ public class LoginController implements Initializable {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
 
                 isConnected.setText("Logged in successfully");
+//                Statement stmt = connection.createStatement();
+//                ResultSet rs  =stmt.executeQuery("select from employee where role like '%Employee%'");
+//                while (rs.next()){
+//                    String name = rs.getString("name");
+//                    String role = rs.getString("role");
+//                    System.out.println(name + "," + role);
+//                }
+
+                Parent root = FXMLLoader.load(getClass().getResource("../ui/menu.fxml"));
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
 
 
             }else{
                 isConnected.setText("username or password is incorrect");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }

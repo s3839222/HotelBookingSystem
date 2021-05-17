@@ -1,5 +1,7 @@
 package main.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -7,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -30,6 +33,8 @@ public class ResetController implements Initializable {
     @FXML
     private TextField txtUsername;
     @FXML
+    private ComboBox txtQuestion;
+    @FXML
     private PasswordField txtNewPassword;
     @FXML
     private TextField txtAnswer;
@@ -37,6 +42,11 @@ public class ResetController implements Initializable {
     // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        ObservableList<String> questions = FXCollections.observableArrayList(
+                "What is your favourite fruit","What is your favourite food",
+                "Who is your favourite superhero");
+        txtQuestion.setItems(questions);
+        txtQuestion.getSelectionModel().selectFirst();
 
         if (resetModel.isDbConnected()){
             isConnected.setText("Connected");
@@ -51,20 +61,27 @@ public class ResetController implements Initializable {
 
         String username =txtUsername.getText();
         String answer =txtAnswer.getText();
+        String question =(String) txtQuestion.getValue();
         String newPassword =txtNewPassword.getText();
 
         try {
-            if (resetModel.isReset(newPassword, username, answer)){
+            if(username.equals("") || newPassword.equals("")|| answer.equals("")){
+                isConnected.setText("Please fill in the form");
+            }else {
+                if (resetModel.isReset(newPassword, username, question, answer)) {
 
-                isConnected.setText("Password reset");
+                    isConnected.setText("Password reset");
 
 
-            }else{
-                isConnected.setText("username or answer is incorrect");
+                } else {
+                    isConnected.setText("username or answer is incorrect");
+                }
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
 //
 //        String username =txtUsername.getText();
 //        String answer =txtAnswer.getText();

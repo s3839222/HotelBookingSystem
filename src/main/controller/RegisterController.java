@@ -1,21 +1,24 @@
 package main.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import main.SQLConnection;
 import main.model.LoginModel;
 import main.model.RegisterModel;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -37,7 +40,7 @@ public class RegisterController implements Initializable{
     @FXML
     private TextField txtAge;
     @FXML
-    private TextField txtQuestion;
+    private ComboBox txtQuestion;
     @FXML
     private TextField txtAnswer;
     @FXML
@@ -48,9 +51,15 @@ public class RegisterController implements Initializable{
     private Button cancelButton;
 
 
+
     // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        ObservableList<String> questions = FXCollections.observableArrayList(
+                "What is your favourite fruit","What is your favourite food",
+                "Who is your favourite superhero");
+        txtQuestion.setItems(questions);
+        txtQuestion.getSelectionModel().selectFirst();
         if (registerModel.isDbConnected()){
             isConnected.setText("Connected");
         }else{
@@ -84,8 +93,9 @@ public class RegisterController implements Initializable{
         String password =txtPassword.getText();
         String age =txtAge.getText();
         String role =txtRole.getText();
-        String question =txtQuestion.getText();
+        String question =(String) txtQuestion.getValue();
         String answer =txtAnswer.getText();
+
         if(firstname.equals("") || age.equals("") || username.equals("")|| password.equals("")||
                                             role.equals("")|| question.equals("")|| answer.equals("")){
                 isConnected.setText("Please fill in the form");
@@ -101,6 +111,7 @@ public class RegisterController implements Initializable{
                     if (registerModel.isRegister(firstname, surname,  age, username, password, role, question, answer)){
 
                         isConnected.setText("Registration is successfully");
+
 
 
                     }

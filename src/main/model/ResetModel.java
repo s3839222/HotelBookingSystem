@@ -27,16 +27,17 @@ public class ResetModel {
         }
     }
 
-    public boolean isReset(String newPassword, String username, String answer) throws SQLException {
+    public boolean isReset(String newPassword, String username, String question, String answer) throws SQLException {
         PreparedStatement preparedStatement = null;
         int resultSet= 0;
-        String query = "UPDATE employee SET password =? WHERE username = ? AND secret_answer =?";
+        String query = "UPDATE employee SET password =? WHERE username = ? AND secret_question =? AND secret_answer =?";
         try {
 //
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, newPassword);
             preparedStatement.setString(2, username);
-            preparedStatement.setString(3, answer);
+            preparedStatement.setString(3, question);
+            preparedStatement.setString(4, answer);
 
             preparedStatement.executeUpdate();
             return true;
