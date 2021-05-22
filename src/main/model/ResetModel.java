@@ -51,5 +51,29 @@ public class ResetModel {
 
     }
 
+//    public boolean isAccountChange(String newPassword, String firstname, String surname) throws SQLException {
+//        PreparedStatement preparedStatement = null;
+//        int resultSet= 0;
+//        String query = "UPDATE employee SET password =? AND firstname = ? AND surname =?";
+//        try {
+////
+//            preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setString(1, newPassword);
+//            preparedStatement.setString(2, firstname);
+//            preparedStatement.setString(3, surname);
+//
+//            preparedStatement.executeUpdate();
+//            return true;
+//        } catch (Exception e)
+//        {
+//            return false;
+//        }finally {
+//            assert preparedStatement != null;
+//            preparedStatement.close();
+//            //resultSet.close();
+//        }
+//
+//    }
+
 
 }

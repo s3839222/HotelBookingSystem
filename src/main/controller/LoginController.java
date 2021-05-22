@@ -51,8 +51,12 @@ public class LoginController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+
+
     public  void resetButtonAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../ui/reset.fxml"));
+
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(root));

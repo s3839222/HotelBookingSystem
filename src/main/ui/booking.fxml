@@ -46,13 +46,23 @@
          </menus>
       </MenuBar>
       <DatePicker layoutX="191.0" layoutY="71.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="54.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="237.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="409.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="54.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="237.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="409.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Button layoutX="140.0" layoutY="336.0" mnemonicParsing="false" text="Make Booking" />
-      <Button layoutX="306.0" layoutY="336.0" mnemonicParsing="false" text="Cancel Booking" />
+      <Rectangle fx:id="tableOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="54.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="tableTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="237.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="tableThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="409.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="tableFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="54.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="tableFive" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="237.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="tableSix" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="409.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Button layoutX="54.0" layoutY="204.0" mnemonicParsing="false" text="Book" />
+      <Button layoutX="118.0" layoutY="204.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="236.0" layoutY="204.0" mnemonicParsing="false" text="Book" />
+      <Button layoutX="300.0" layoutY="204.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="409.0" layoutY="204.0" mnemonicParsing="false" text="Book" />
+      <Button layoutX="473.0" layoutY="204.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="54.0" layoutY="329.0" mnemonicParsing="false" text="Book" />
+      <Button layoutX="118.0" layoutY="329.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="237.0" layoutY="329.0" mnemonicParsing="false" text="Book" />
+      <Button layoutX="301.0" layoutY="329.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="409.0" layoutY="329.0" mnemonicParsing="false" text="Book" />
+      <Button layoutX="473.0" layoutY="329.0" mnemonicParsing="false" text="Cancel" />
    </children>
 </AnchorPane>

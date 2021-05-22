@@ -46,7 +46,7 @@ public class RegisterController implements Initializable{
     @FXML
     private PasswordField txtConfirmPassword;
     @FXML
-    private TextField txtRole;
+    private ComboBox txtRole;
     @FXML
     private Button cancelButton;
 
@@ -60,6 +60,11 @@ public class RegisterController implements Initializable{
                 "Who is your favourite superhero");
         txtQuestion.setItems(questions);
         txtQuestion.getSelectionModel().selectFirst();
+
+        ObservableList<String> role = FXCollections.observableArrayList(
+                "Employee","Admin");
+        txtRole.setItems(role);
+        txtRole.getSelectionModel().selectFirst();
         if (registerModel.isDbConnected()){
             isConnected.setText("Connected");
         }else{
@@ -92,7 +97,7 @@ public class RegisterController implements Initializable{
         String username =txtUsername.getText();
         String password =txtPassword.getText();
         String age =txtAge.getText();
-        String role =txtRole.getText();
+        String role =(String) txtRole.getValue();;
         String question =(String) txtQuestion.getValue();
         String answer =txtAnswer.getText();
 
