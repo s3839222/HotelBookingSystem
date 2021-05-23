@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import main.model.LoginModel;
+import main.model.UserDetailModel;
 
 
 import java.io.IOException;
@@ -20,8 +21,10 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    Connection connection;
+
     public LoginModel loginModel = new LoginModel();
+    public UserDetailModel userDetailModel = new UserDetailModel();
+
     @FXML
     private Label isConnected;
     @FXML
@@ -67,24 +70,31 @@ public class LoginController implements Initializable {
        check if user input is the same as database.
      */
     public void Login(ActionEvent event){
-
+        User u = new User();
+        String name = txtUsername.getText();
+        u.setUsername(name);
         try {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
+                if(userDetailModel.getRoleByUser(txtUsername.getText()).equals("Admin")){
+                    UserHolder holder = UserHolder.getInstance();
+                    holder.setUser(u);
+                    isConnected.setText("Logged in successfully");
+                    Parent root = FXMLLoader.load(getClass().getResource("../ui/navigation.fxml"));
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                }else{
+                    UserHolder holder = UserHolder.getInstance();
+                    holder.setUser(u);
+                    isConnected.setText("Logged in successfully");
+                    Parent root = FXMLLoader.load(getClass().getResource("../ui/empNav.fxml"));
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                }
 
-                isConnected.setText("Logged in successfully");
-//                Statement stmt = connection.createStatement();
-//                ResultSet rs  =stmt.executeQuery("select from employee where role like '%Employee%'");
-//                while (rs.next()){
-//                    String name = rs.getString("name");
-//                    String role = rs.getString("role");
-//                    System.out.println(name + "," + role);
-//                }
-
-                Parent root = FXMLLoader.load(getClass().getResource("../ui/menu.fxml"));
-                Node node = (Node) event.getSource();
-                Stage stage = (Stage) node.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
 
 
             }else{

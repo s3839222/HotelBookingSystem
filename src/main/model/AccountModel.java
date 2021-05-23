@@ -61,6 +61,61 @@ public class AccountModel {
         }
 
     }
+    public boolean isDelete( String id) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        int resultSet= 0;
+        String query = "DELETE FROM Employee WHERE id = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+
+            resultSet = preparedStatement.executeUpdate();
+            if(resultSet == 1){
+                return true;
+            }
+            else{
+                return false;
+            }
+            //return true;
+        } catch (Exception e)
+        {
+            return false;
+        }finally {
+            //assert preparedStatement != null;
+            preparedStatement.close();
+            //resultSet.close();
+        }
+
+    }
+    public boolean isEmployeeUpdate(String firstname, String surname, String username, String password) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        int resultSet= 0;
+        String query = "UPDATE employee SET name =?, surname = ?, password = ? WHERE username = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, firstname);
+            preparedStatement.setString(2, surname);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, username);
+
+            resultSet = preparedStatement.executeUpdate();
+            if(resultSet == 1){
+                return true;
+            }
+            else{
+                return false;
+            }
+            //return true;
+        } catch (Exception e)
+        {
+            return false;
+        }finally {
+            //assert preparedStatement != null;
+            preparedStatement.close();
+            //resultSet.close();
+        }
+
+    }
 
 
 }

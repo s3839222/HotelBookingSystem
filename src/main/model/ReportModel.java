@@ -32,14 +32,11 @@ public class ReportModel {
     }
     public void EmplyoeeReport() throws SQLException, IOException {
         try {
-            PrintWriter pw = null;
-            try {
-                pw = new PrintWriter(new File("C://EmplyoeeReport.csv"));
-            } catch (FileNotFoundException fileNotFoundException) {
-                fileNotFoundException.printStackTrace();
-            }
+            PrintWriter pw = new PrintWriter(new File("C:\\Users\\kuhaf\\Downloads\\EmplyoeeReport.csv"));
+
             StringBuilder sb = new StringBuilder();
 
+            connection = SQLConnection.connect();
 
             ResultSet rs = null;
 

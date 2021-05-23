@@ -17,7 +17,7 @@
                   <MenuItem mnemonicParsing="false" text="Manage Account" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Booking">
+            <Menu mnemonicParsing="false" onAction="#bookingButtonAction" text="Booking">
                <items>
                   <MenuItem fx:id="booking" mnemonicParsing="false" text="Make/Cancel Booking" />
                </items>

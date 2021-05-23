@@ -17,7 +17,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ManageAccountController implements Initializable {
+public class AdminAccountController implements Initializable {
     //public ResetModel resetModel = new ResetModel();
     public LoginModel loginModel = new LoginModel();
     public AccountModel accountModel = new AccountModel();
@@ -25,6 +25,22 @@ public class ManageAccountController implements Initializable {
 
     @FXML
     private Label isConnected;
+    @FXML
+    private Label isUsername;
+    @FXML
+    private Label isName;
+    @FXML
+    private Label isSurname;
+    @FXML
+    private Label isPass;
+    @FXML
+    private Label isSQ;
+    @FXML
+    private Label isSA;
+    @FXML
+    private Label isAge;
+    @FXML
+    private Label isRole;
     @FXML
     private TextField txtID;
     @FXML
@@ -49,6 +65,8 @@ public class ManageAccountController implements Initializable {
     private ComboBox txtNewRole;
     @FXML
     private Button updateButton;
+    @FXML
+    private Button isDeleteAcc;
 
     String ID;
 
@@ -65,8 +83,18 @@ public class ManageAccountController implements Initializable {
         txtFirstname.setVisible(false);
         txtSurname.setVisible(false);
         updateButton.setVisible(false);
+        isDeleteAcc.setVisible(false);
         txtNewQuestion.setVisible(false);
         txtNewRole.setVisible(false);
+
+        isName.setVisible(false);
+        isSurname.setVisible(false);
+        isPass.setVisible(false);
+        isSQ.setVisible(false);
+        isSA.setVisible(false);
+        isAge.setVisible(false);
+        isRole.setVisible(false);
+        isUsername.setVisible(false);
 
         ObservableList<String> questions = FXCollections.observableArrayList(
                 "What is your favourite fruit","What is your favourite food",
@@ -111,7 +139,6 @@ public class ManageAccountController implements Initializable {
         txtFirstname.setText(name);
         txtSurname.setText(surname);
 
-
         txtAnswer.setVisible(true);
         txtNewPassword.setVisible(true);
         txtQuestion.setVisible(true);
@@ -123,8 +150,18 @@ public class ManageAccountController implements Initializable {
         txtNewQuestion.setVisible(true);
         txtNewRole.setVisible(true);
         updateButton.setVisible(true);
+        isDeleteAcc.setVisible(true);
 
-        txtID.setEditable(false);
+        isName.setVisible(true);
+        isSurname.setVisible(true);
+        isPass.setVisible(true);
+        isSQ.setVisible(true);
+        isSA.setVisible(true);
+        isAge.setVisible(true);
+        isRole.setVisible(true);
+        isUsername.setVisible(true);
+
+        //txtID.setEditable(false);
         txtRole.setEditable(false);
         txtQuestion.setEditable(false);
 
@@ -158,6 +195,23 @@ public class ManageAccountController implements Initializable {
                 }
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void Delete(ActionEvent event){
+        String id =txtID.getText();
+        try {
+            if (accountModel.isDelete(id)) {
+
+                isConnected.setText("Account has been delete");
+
+
+            } else {
+                isConnected.setText("Please select ID to delete");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

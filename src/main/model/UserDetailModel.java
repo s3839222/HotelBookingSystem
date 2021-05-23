@@ -81,14 +81,14 @@ public class UserDetailModel {
         return null;
     }
 
-    public String getRole(String username) throws SQLException {
+    public String getRole(String id) throws SQLException {
         String sql = "select id, role from Employee";
         ResultSet rs = null;
         try {
             Statement stmt  = connection.createStatement();
             rs    = stmt.executeQuery(sql);
             while(rs.next()){
-                if(username.equals(rs.getString("id"))){
+                if(id.equals(rs.getString("id"))){
                     return rs.getString("role");
                 }
             }
@@ -99,14 +99,14 @@ public class UserDetailModel {
         }
         return null;
     }
-    public String getFirstName(String username) throws SQLException {
+    public String getFirstName(String id) throws SQLException {
         String sql = "select id, name from Employee";
         ResultSet rs = null;
         try {
             Statement stmt  = connection.createStatement();
             rs    = stmt.executeQuery(sql);
             while(rs.next()){
-                if(username.equals(rs.getString("id"))){
+                if(id.equals(rs.getString("id"))){
                     return rs.getString("name");
                 }
             }
@@ -118,14 +118,14 @@ public class UserDetailModel {
         return null;
     }
 
-    public String getSurname(String username) throws SQLException {
+    public String getSurname(String id) throws SQLException {
         String sql = "select id, surname from Employee";
         ResultSet rs = null;
         try {
             Statement stmt  = connection.createStatement();
             rs    = stmt.executeQuery(sql);
             while(rs.next()){
-                if(username.equals(rs.getString("id"))){
+                if(id.equals(rs.getString("id"))){
                     return rs.getString("surname");
                 }
             }
@@ -137,14 +137,14 @@ public class UserDetailModel {
         return null;
     }
 
-    public String getPassword(String username) throws SQLException {
+    public String getPassword(String id) throws SQLException {
         String sql = "select id, password from Employee";
         ResultSet rs = null;
         try {
             Statement stmt  = connection.createStatement();
             rs   = stmt.executeQuery(sql);
             while(rs.next()) {
-                if (username.equals(rs.getString("id"))) {
+                if (id.equals(rs.getString("id"))) {
                     return rs.getString("password");
                 }
             }
@@ -156,14 +156,14 @@ public class UserDetailModel {
         return null;
     }
 
-    public String getUsername(String username) throws SQLException {
+    public String getUsername(String id) throws SQLException {
         String sql = "select id, username from Employee";
         ResultSet rs = null;
         try {
             Statement stmt  = connection.createStatement();
             rs    = stmt.executeQuery(sql);
             while(rs.next()){
-                if(username.equals(rs.getString("id"))){
+                if(id.equals(rs.getString("id"))){
                     return rs.getString("username");
                 }
             }
@@ -175,14 +175,14 @@ public class UserDetailModel {
         return null;
     }
 
-    public String getSecretAns(String username) throws SQLException {
+    public String getSecretAns(String id) throws SQLException {
         String sql = "select id, secret_answer from Employee";
         ResultSet rs = null;
         try {
             Statement stmt  = connection.createStatement();
             rs    = stmt.executeQuery(sql);
             while(rs.next()){
-                if(username.equals(rs.getString("id"))){
+                if(id.equals(rs.getString("id"))){
                     return rs.getString("secret_answer");
                 }
             }
@@ -194,15 +194,53 @@ public class UserDetailModel {
         return null;
     }
 
-    public String getAge(String username) throws SQLException {
+    public String getAge(String id) throws SQLException {
         String sql = "select id, age from Employee";
         ResultSet rs = null;
         try {
             Statement stmt  = connection.createStatement();
             rs    = stmt.executeQuery(sql);
             while(rs.next()){
-                if(username.equals(rs.getString("id"))){
+                if(id.equals(rs.getString("id"))){
                     return rs.getString("age");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            rs.close();
+        }
+        return null;
+    }
+
+    public String getRoleByUser(String username) throws SQLException {
+        String sql = "select username, role from Employee";
+        ResultSet rs = null;
+        try {
+            Statement stmt  = connection.createStatement();
+            rs    = stmt.executeQuery(sql);
+            while(rs.next()){
+                if(username.equals(rs.getString("username"))){
+                    return rs.getString("role");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            rs.close();
+        }
+        return null;
+    }
+
+    public String getIDByUser(String username) throws SQLException {
+        String sql = "select username, id from Employee";
+        ResultSet rs = null;
+        try {
+            Statement stmt  = connection.createStatement();
+            rs    = stmt.executeQuery(sql);
+            while(rs.next()){
+                if(username.equals(rs.getString("username"))){
+                    return rs.getString("id");
                 }
             }
         } catch (SQLException e) {
