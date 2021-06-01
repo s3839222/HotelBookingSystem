@@ -73,4 +73,6 @@ public class EmployeeNavigationController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+
 }

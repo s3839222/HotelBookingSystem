@@ -100,10 +100,12 @@ public class AdminAccountController implements Initializable {
                 "What is your favourite fruit","What is your favourite food",
                 "Who is your favourite superhero");
         txtNewQuestion.setItems(questions);
+        txtNewQuestion.getSelectionModel().selectFirst();
 
         ObservableList<String> role = FXCollections.observableArrayList(
                 "Employee","Admin");
         txtNewRole.setItems(role);
+        txtNewRole.getSelectionModel().selectFirst();
 
         if (accountModel.isDbConnected()){
             isConnected.setText("Connected");

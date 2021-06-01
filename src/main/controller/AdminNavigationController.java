@@ -66,6 +66,11 @@ public class AdminNavigationController implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(root);
     }
+    public void tableAllocation(javafx.event.ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/tableAllocation.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(root);
+    }
     public void signout(javafx.event.ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
         Node node = (Node) event.getSource();

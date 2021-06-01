@@ -1,68 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.BookingController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.BookingController">
    <children>
-      <MenuBar fx:id="menubar" layoutX="24.0" layoutY="24.0" prefHeight="26.0" prefWidth="566.0">
-         <menus>
-            <Menu mnemonicParsing="false" text="Account">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Manage Account" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" onAction="#bookingButtonAction" text="Booking">
-               <items>
-                  <MenuItem fx:id="booking" mnemonicParsing="false" text="Make/Cancel Booking" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Table Allocation">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="View" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Report">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Booking" />
-                  <MenuItem mnemonicParsing="false" text="Employee" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Lockdown">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Lockdown" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Sign Out">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Sign Out" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <DatePicker layoutX="191.0" layoutY="71.0" />
-      <Rectangle fx:id="tableOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="54.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle fx:id="tableTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="237.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle fx:id="tableThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="409.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle fx:id="tableFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="54.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle fx:id="tableFive" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="237.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Rectangle fx:id="tableSix" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" layoutX="409.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="127.0" />
-      <Button layoutX="54.0" layoutY="204.0" mnemonicParsing="false" text="Book" />
-      <Button layoutX="118.0" layoutY="204.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="236.0" layoutY="204.0" mnemonicParsing="false" text="Book" />
-      <Button layoutX="300.0" layoutY="204.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="409.0" layoutY="204.0" mnemonicParsing="false" text="Book" />
-      <Button layoutX="473.0" layoutY="204.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="54.0" layoutY="329.0" mnemonicParsing="false" text="Book" />
-      <Button layoutX="118.0" layoutY="329.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="237.0" layoutY="329.0" mnemonicParsing="false" text="Book" />
-      <Button layoutX="301.0" layoutY="329.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="409.0" layoutY="329.0" mnemonicParsing="false" text="Book" />
-      <Button layoutX="473.0" layoutY="329.0" mnemonicParsing="false" text="Cancel" />
+      <Rectangle fx:id="table1" arcHeight="5.0" arcWidth="5.0" fill="#55ff00" height="72.0" layoutX="50.0" layoutY="93.0" onMouseClicked="#Table" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="table2" arcHeight="5.0" arcWidth="5.0" fill="#55ff00" height="72.0" layoutX="233.0" layoutY="93.0" onMouseClicked="#Table" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="table3" arcHeight="5.0" arcWidth="5.0" fill="#55ff00" height="72.0" layoutX="405.0" layoutY="93.0" onMouseClicked="#Table" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="table4" arcHeight="5.0" arcWidth="5.0" fill="#55ff00" height="72.0" layoutX="54.0" layoutY="252.0" onMouseClicked="#Table" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="table5" arcHeight="5.0" arcWidth="5.0" fill="#55ff00" height="72.0" layoutX="237.0" layoutY="252.0" onMouseClicked="#Table" stroke="BLACK" strokeType="INSIDE" width="127.0" />
+      <Rectangle fx:id="table6" arcHeight="5.0" arcWidth="5.0" fill="#55ff00" height="72.0" layoutX="409.0" layoutY="252.0" onMouseClicked="#Table" stroke="BLACK" strokeType="INSIDE" width="127.0" />
    </children>
 </AnchorPane>

@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
                     UserHolder holder = UserHolder.getInstance();
                     holder.setUser(u);
                     isConnected.setText("Logged in successfully");
-                    Parent root = FXMLLoader.load(getClass().getResource("../ui/navigation.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("../ui/adminNavigation.fxml"));
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.setScene(new Scene(root));
