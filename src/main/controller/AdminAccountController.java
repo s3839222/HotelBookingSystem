@@ -50,7 +50,7 @@ public class AdminAccountController implements Initializable {
     @FXML
     private TextField txtUsername;
     @FXML
-    private PasswordField txtNewPassword;
+    private TextField txtNewPassword;
     @FXML
     private TextField txtAge;
     @FXML
@@ -129,43 +129,46 @@ public class AdminAccountController implements Initializable {
         String name = usrMOdel.getFirstName(ID);
         String surname = usrMOdel.getSurname(ID);
 
+        if(ID.equals("")){
+            isConnected.setText("Please enter an ID");
+        }else {
+            System.out.println(qs);
+            txtQuestion.setText(qs);
+            txtAnswer.setText(ans);
+            txtNewPassword.setText(pass);
+            txtQuestion.setText(qs);
+            txtRole.setText(role);
+            txtUsername.setText(username);
+            txtAge.setText(age);
+            txtFirstname.setText(name);
+            txtSurname.setText(surname);
 
-        System.out.println(qs);
-        txtQuestion.setText(qs);
-        txtAnswer.setText(ans);
-        txtNewPassword.setText(pass);
-        txtQuestion.setText(qs);
-        txtRole.setText(role);
-        txtUsername.setText(username);
-        txtAge.setText(age);
-        txtFirstname.setText(name);
-        txtSurname.setText(surname);
+            txtAnswer.setVisible(true);
+            txtNewPassword.setVisible(true);
+            txtQuestion.setVisible(true);
+            txtRole.setVisible(true);
+            txtUsername.setVisible(true);
+            txtAge.setVisible(true);
+            txtFirstname.setVisible(true);
+            txtSurname.setVisible(true);
+            txtNewQuestion.setVisible(true);
+            txtNewRole.setVisible(true);
+            updateButton.setVisible(true);
+            isDeleteAcc.setVisible(true);
 
-        txtAnswer.setVisible(true);
-        txtNewPassword.setVisible(true);
-        txtQuestion.setVisible(true);
-        txtRole.setVisible(true);
-        txtUsername.setVisible(true);
-        txtAge.setVisible(true);
-        txtFirstname.setVisible(true);
-        txtSurname.setVisible(true);
-        txtNewQuestion.setVisible(true);
-        txtNewRole.setVisible(true);
-        updateButton.setVisible(true);
-        isDeleteAcc.setVisible(true);
+            isName.setVisible(true);
+            isSurname.setVisible(true);
+            isPass.setVisible(true);
+            isSQ.setVisible(true);
+            isSA.setVisible(true);
+            isAge.setVisible(true);
+            isRole.setVisible(true);
+            isUsername.setVisible(true);
 
-        isName.setVisible(true);
-        isSurname.setVisible(true);
-        isPass.setVisible(true);
-        isSQ.setVisible(true);
-        isSA.setVisible(true);
-        isAge.setVisible(true);
-        isRole.setVisible(true);
-        isUsername.setVisible(true);
-
-        //txtID.setEditable(false);
-        txtRole.setEditable(false);
-        txtQuestion.setEditable(false);
+            //txtID.setEditable(false);
+            txtRole.setEditable(false);
+            txtQuestion.setEditable(false);
+        }
 
     }
 

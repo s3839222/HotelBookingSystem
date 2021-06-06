@@ -57,6 +57,7 @@ public class AdminNavigationController implements Initializable {
         contentArea.getChildren().setAll(root);
     }
     public void booking(javafx.event.ActionEvent event) throws IOException{
+
         Parent root = FXMLLoader.load(getClass().getResource("../ui/booking.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(root);
@@ -73,6 +74,13 @@ public class AdminNavigationController implements Initializable {
     }
     public void signout(javafx.event.ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    public void home(javafx.event.ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/adminNavigation.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(root));

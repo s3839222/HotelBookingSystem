@@ -12,12 +12,13 @@
    <top>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="TOP_CENTER" layoutX="28.0" prefHeight="83.0" prefWidth="593.0">
+            <HBox alignment="TOP_CENTER" prefHeight="53.0" prefWidth="658.0">
                <children>
+                  <Button mnemonicParsing="false" onAction="#home" prefHeight="50.0" prefWidth="104.0" text="Home" />
                   <Button mnemonicParsing="false" onAction="#account" prefHeight="50.0" prefWidth="110.0" text="Account" />
                   <Button mnemonicParsing="false" onAction="#booking" prefHeight="50.0" prefWidth="110.0" text="Booking" />
-                  <Button mnemonicParsing="false" onAction="#report" prefHeight="50.0" prefWidth="110.0" text="Report" />
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#tableAllocation" prefHeight="50.0" prefWidth="142.0" text="Table Allocation" />
+                  <Button mnemonicParsing="false" onAction="#report" prefHeight="50.0" prefWidth="110.0" text="Report" />
                   <Button mnemonicParsing="false" onAction="#signout" prefHeight="50.0" prefWidth="110.0" text="Signout" />
                </children>
             </HBox>
@@ -30,9 +31,9 @@
    <center>
       <AnchorPane prefHeight="398.0" prefWidth="635.0" BorderPane.alignment="CENTER">
          <children>
-            <StackPane fx:id="contentArea" layoutX="-200.0" layoutY="-138.0" prefHeight="429.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-138.0">
+            <StackPane fx:id="contentArea" layoutX="-200.0" layoutY="-151.0" prefHeight="476.0" prefWidth="658.0" style="-fx-background-color: #BFAEE3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-151.0">
                <children>
-                  <Label fx:id="isUsername" text="Username" />
+                  <Label fx:id="isUsername" text="Username" textFill="WHITE" />
                </children></StackPane>
          </children>
       </AnchorPane>

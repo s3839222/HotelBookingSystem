@@ -28,6 +28,12 @@ public class ResetController implements Initializable{
     @FXML
     private Label isConnected;
     @FXML
+    private Label SQ;
+    @FXML
+    private Label SA;
+    @FXML
+    private Label NP;
+    @FXML
     private TextField txtUsername;
     @FXML
     private TextField secretQs;
@@ -51,6 +57,9 @@ public class ResetController implements Initializable{
         secretQs.setVisible(false);
         resetBttn.setVisible(false);
         loginBttn.setVisible(false);
+        SQ.setVisible(false);
+        SA.setVisible(false);
+        NP.setVisible(false);
 
         if (resetModel.isDbConnected()){
             isConnected.setText("Connected");
@@ -71,6 +80,9 @@ public class ResetController implements Initializable{
         txtNewPassword.setVisible(true);
         resetBttn.setVisible(true);
         loginBttn.setVisible(true);
+        SQ.setVisible(true);
+        SA.setVisible(true);
+        NP.setVisible(true);
 
     }
     public void Reset(ActionEvent event) {

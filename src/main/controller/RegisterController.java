@@ -73,24 +73,6 @@ public class RegisterController implements Initializable{
 
     }
 
-//    public void registerButtonOnAction(ActionEvent event) throws IOException {
-//        if(txtPassword.getText().equals("")){
-//            isConnected.setText("Please fill in the form");
-//        }else {
-//            if (txtPassword.getText().equals(txtConfirmPassword.getText())) {
-//
-//                registerUser();
-//                isConnected.setText("User Registered");
-//
-//            } else {
-//                isConnected.setText("Password does not match");
-//            }
-//        }
-//
-//
-//
-//    }
-    //name, surname, age, username, password, role, secret_question, secret_answer
     public void Register(ActionEvent event){
         String firstname =txtFirstname.getText();
         String surname =txtSurname.getText();

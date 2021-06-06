@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="334.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ResetController">
+<AnchorPane prefHeight="334.0" prefWidth="488.0" style="-fx-background-color: #D7EAE4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ResetController">
    <children>
       <Label layoutX="46.0" layoutY="55.0" text="Username" />
       <Button fx:id="submitBttn" layoutX="373.0" layoutY="50.0" mnemonicParsing="false" onAction="#Submit" text="Submit" />
-      <Label layoutX="12.0" layoutY="126.0" text="Security Answer" />
-      <Label layoutX="20.0" layoutY="163.0" text="New password" />
+      <Label fx:id="SA" layoutX="12.0" layoutY="126.0" text="Security Answer" />
+      <Label fx:id="NP" layoutX="20.0" layoutY="163.0" text="New password" />
       <TextField fx:id="txtUsername" layoutX="121.0" layoutY="51.0" prefHeight="31.0" prefWidth="219.0" promptText="Username" />
       <TextField fx:id="txtAnswer" layoutX="121.0" layoutY="122.0" prefHeight="31.0" prefWidth="219.0" promptText="Answer" />
       <PasswordField fx:id="txtNewPassword" layoutX="122.0" layoutY="159.0" prefHeight="31.0" prefWidth="219.0" promptText="Password" />
-      <Label layoutX="82.0" layoutY="8.0" text="Reset Password">
+      <Label layoutX="169.0" layoutY="14.0" text="Reset Password">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Label fx:id="isConnected" layoutX="26.0" layoutY="290.0" text="Status" />
       <Label fx:id="SQ" layoutX="12.0" layoutY="91.0" text="Secret Question" />
-      <TextField fx:id="secretQs" layoutX="122.0" layoutY="86.0" prefHeight="31.0" prefWidth="219.0" />
+      <TextField fx:id="secretQs" layoutX="122.0" layoutY="86.0" prefHeight="31.0" prefWidth="219.0" promptText="Question" />
       <Button fx:id="resetBttn" layoutX="122.0" layoutY="209.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
       <Button fx:id="loginBttn" layoutX="276.0" layoutY="209.0" mnemonicParsing="false" onAction="#Login" text="Login" />
    </children>

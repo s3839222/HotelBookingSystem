@@ -44,7 +44,7 @@ public class EmployeeAccountController implements Initializable {
     @FXML
     private TextField txtUsername;
     @FXML
-    private PasswordField txtNewPassword;
+    private TextField txtNewPassword;
     @FXML
     private TextField txtAge;
     @FXML

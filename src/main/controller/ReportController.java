@@ -36,6 +36,6 @@ public class ReportController implements Initializable {
     public void EmployeeReport(javafx.event.ActionEvent event) throws SQLException, IOException {
         System.out.println("Employee report generated");
         reportModel.EmplyoeeReport();
-        //isConnected.setText("Report Generated");
+        isConnected.setText("Employee Report Generated");
     }
 }

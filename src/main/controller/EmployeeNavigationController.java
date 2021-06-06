@@ -27,25 +27,15 @@ public class EmployeeNavigationController implements Initializable {
     @FXML
     private StackPane contentArea;
 
-//    @FXML
-//    private Label isUsername;
+    @FXML
+    private Label isUsername;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
         UserHolder holder = UserHolder.getInstance();
         User u = holder.getUser();
         String username = u.getUsername();
-        //isUsername.setText(username);
-        System.out.println("isUsername:" + username);
-
-        if (loginModel.isDbConnected()){
-            //isConnected.setText("Connected");
-            System.out.println("connected");
-        }else{
-            //isConnected.setText("Not Connected");
-            System.out.println("not connected");
-        }
-
+        isUsername.setText(username);
     }
 
 
@@ -68,6 +58,13 @@ public class EmployeeNavigationController implements Initializable {
 
     public void signout(javafx.event.ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    public void home(javafx.event.ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/empNav.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(root));

@@ -80,7 +80,7 @@ public class UserDetailModel {
         }
         return null;
     }
-
+    //fix this or delete this, this is useless, you're trying to get role by id where id is int and your passing string..
     public String getRole(String id) throws SQLException {
         String sql = "select id, role from Employee";
         ResultSet rs = null;
@@ -214,7 +214,7 @@ public class UserDetailModel {
     }
 
     public String getRoleByUser(String username) throws SQLException {
-        String sql = "select username, role from Employee";
+        String sql = "SELECT username, role from Employee";
         ResultSet rs = null;
         try {
             Statement stmt  = connection.createStatement();
@@ -240,7 +240,7 @@ public class UserDetailModel {
             rs    = stmt.executeQuery(sql);
             while(rs.next()){
                 if(username.equals(rs.getString("username"))){
-                    return rs.getString("id");
+                    return rs.getString("id"); //id is integer again
                 }
             }
         } catch (SQLException e) {
