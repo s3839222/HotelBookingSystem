@@ -1,82 +1,40 @@
 # Readme
+Name: Abu Kuhafah	Student Number: S3839222 	Course : Further Programing
 
-This README should be completed by the student
+This project is a system to manage "Hotdesking" methodolgogy to allocate tables to Arub Employees.
+It prevents the employees from sitting in the same table every time. Furthermore due to Covid having
+huge impacts in everyones lives there is sitting condition placed for that, one being social distancing
+where the employees are unable to sit next to each other and are a table away, another is complete 
+lockdown where the meployees arnt able to make any booking during that phase. Once an employee books
+a table, it goes into pending where after 48 hours it is cancelled. During that time an admin can accpet
+the booking from the employee and thus changing the status of their booking.
+Along with the booking system there is also an account managemenet system, where the employees are are 
+able to manage their own accounts and change details such as their password. On the other hand Admins are
+able to edit the employees account aswell as delete them. Admins are also able to generate reports for both
+bookings and employees which are generated as CSV files.
 
-# Packaging
-The main class is Main.java
+It is easy to run and compile as the main file is called main and once run, then the user is given the option
+to login, register or reset password. Here the user is able to login if they have an account or create a 
+new account. After login they are able to make booking or manage their account through the navigation bar 
+at the top of the application. After making a booking/manging details they can signout and exit the applicaiton.
 
-Packaging for classes:
- - main.controller
- - main.model
- - main.ui
-Packaging for test:
- - test.model
+Another design pattern besides MVC that was used was singleton. This was done as singleton encapsulates a resource
+and makes it readily available thorughout the whole application. Thus a user singleton was great for this 
+applicaiton as it allowed the user to be available to other classes for it's usage. 
 
-## How to clone the project using intelliJIDEA and RUN the application
-1- Download IntelliJ IDEA Ultimate Version (You had to apply for student license)
+The design has changed greatly through the process, this was the result of new addition information that had to 
+be added/removed to better fit the application and the usage. An example of this is the registation where at first
+did not have any secret question and answer for the user to include in their registration process. This change was
+made to better fit the application to real life applicaction where that is very common as it allows an increase in 
+security. Another change is the navigation system, at first it was more like a mobile app where there was buttons 
+in the middle of the page for navigation, however this application is not mobile based and to make it more 
+proffessional it was deccided that it was better to include the navigation bar at the top.
 
-2- Open IntelliJ IDEA, select "File" from the top menu, select "New" and select "Project from Version Control"  
 
-3- Copy your Github classroom repository and paste into URL, click on "Clone".
- Your project will be cloned and open in your IntelliJ IDEA window.
- 
- However, you still need to add the SQLite jar file to your project so you can have access to your database. Follow next steps for adding the Jar file:
- 
-1- Download the SQLite JDBC jar file from week 7 Canvas module.
-
-2- In your project under project root, make a new directory called lib and move the jar file into lib folder
-
-3- Open IntelliJ IDEA, click on "File", open "Project Structure"
-
-4- Under "Project Setting", select "Libraries"
-
-5- Click + button, choose Java, and navigate to your project folder, then Lib folder, choose "sqlite-jdbc-3.34.0.jar", and click on "open"
-
-6- Click on Apply and then OK to close the window
-
-Now you are ready to Run the Application.
-
-Simply right click on Main.java and choose Run.
-Congratulations!
-
-Login info:
-
+For Admin login:
 Username: test
-
 Password: test
 
-
-## Prepare other content
-
-Readme files are made for developers (including you), but also could be used for the final users.
-So while you are writing your readme files please consider a few things:
-
-1. What is about?
-    - Your name and student number and course name on the top
-    - Describe the content of your project or repository
-    - Explain things the users would have a hard time understanding right away
-2. What steps need to be taken?
-    - Any specific steps for running your application, what is the main class?
-    - Is there any requirements or dependencies?
-    - After the installation, how they compile or run the code?
-3. Execution examples
-    - You could provide examples of execution with code and screenshots
-    
-
-other things you could add:
-
-- Table of content
-- Test cases
-- Know bugs
-- Things that have not been working or complete
-
-
-
-### References and tutorials for Readme (Markdown)
-- **IntelliJ IDEA MarkDown guide**. jetbrains.com/help/idea/markdown.html
-- **Choose an open source license**. Github. Available at: https://choosealicense.com/
-- **Getting started with writing and formatting on Github**. Github. Available at: https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github/
-- **Markdown here cheatsheet**. Markdown Here Wiki. Available at: https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet
-- **Markdown quick reference**. Wordpress. Available at: https://en.support.wordpress.com/markdown-quick-reference/
-- **readme-template**. Dan Bader. Github. Available at: https://github.com/dbader/readme-template
-- Writing READMEs. **Udacity**. Available at: https://classroom.udacity.com/courses/ud777/
+For Employee login:
+Username: strange
+Password: strange

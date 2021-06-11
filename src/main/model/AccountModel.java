@@ -30,7 +30,7 @@ public class AccountModel {
     public boolean isAccountUpdate(String firstname, String surname, String age, String username, String password, String role, String question, String answer, String id) throws SQLException {
         PreparedStatement preparedStatement = null;
         int resultSet= 0;
-        String query = "UPDATE employee SET name =?, surname = ?, age =?, username =?, password = ?, role =?, secret_question =?, secret_answer = ?, WHERE id = ?";
+        String query = "UPDATE employee SET name =?, surname = ?, age =?, username =?, password = ?, role =?, secret_question =?, secret_answer = ? WHERE id = ?";
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstname);
