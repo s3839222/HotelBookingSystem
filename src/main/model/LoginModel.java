@@ -35,7 +35,7 @@ public class LoginModel {
             return false;
         }
     }
-
+    // sql to get the details user to login such as the username and pass
     public Boolean isLogin(String user, String pass) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet=null;

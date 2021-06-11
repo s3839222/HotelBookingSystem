@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -26,11 +27,10 @@ import java.util.ResourceBundle;
 public class BookingDateController implements Initializable {
     public BookingModel bookingModel = new BookingModel();
     public UserDetailModel userDetailModel = new UserDetailModel();
+    public UserHolder holder = UserHolder.getInstance();
 
-    @FXML
-    private Button cancel;
-    @FXML
-    private Button accept;
+
+    public User user = holder.getUser();
 
     @FXML
     private DatePicker date;
@@ -39,29 +39,30 @@ public class BookingDateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         date.setValue(LocalDate.now());
         date.setDayCellFactory(picker -> new DateCell(){
             public void updateItem(LocalDate date, boolean empty){
-                super.updateItem(date, empty); // to change body of generated method
+                super.updateItem(date, empty);
                 LocalDate d = LocalDate.now();
-                setDisable(date.compareTo(d) < 0); //disable all the past dates.
+                setDisable(date.compareTo(d) < 0);
             }
         });
 
     }
 
+    // action ot book a table
     public void Book(javafx.event.ActionEvent event) {
         if(date.getValue() == null){
             System.out.println("Please choose a date");
         }else {
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date today = new Date();
             String dateToday = formatter.format(today).toString();
             LocalDate local = date.getValue();
             long dateInt = local.toEpochDay();
             String dateString = local.toString();
-            UserHolder holder = UserHolder.getInstance();
-            User user = holder.getUser();
+
             String userName = user.getUsername();
             user.setDate(dateInt);
             holder.setUser(user);
@@ -80,48 +81,84 @@ public class BookingDateController implements Initializable {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            Stage stage = (Stage) book.getScene().getWindow();
-            stage.close();
+//            Stage stage = (Stage) book.getScene().getWindow();
+//            stage.close();
         }
     }
-    public void Cancel(javafx.event.ActionEvent event) throws SQLException {
+    // action to reject a table bookinh
+    public void Reject(javafx.event.ActionEvent event) throws SQLException {
 
-        UserHolder holder = UserHolder.getInstance();
-        User user = holder.getUser();
-//        String userDate = user.getDate();
+
         holder.setUser(user);
         String tble = user.getTable();
 
+        Date today = new Date();
+        String confirmedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(today);
+
         try {
-            if (bookingModel.isCancelled(tble)) {
-                System.out.println("Cancelled");
-            }
+//
+            bookingModel.updateTableStat(user.getTable(), "cancelled", confirmedDate);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
 //        Stage stage = (Stage) book.getScene().getWindow();
 //        stage.close();
     }
+    // action to reject a table booking
     public void Accept(javafx.event.ActionEvent event) throws SQLException, IOException {
 
-        UserHolder holder = UserHolder.getInstance();
-        User user = holder.getUser();
 
-//        String uname = user.getUsername();
-//        System.out.println(uname);
-//        String userDate = user.getDate();
         holder.setUser(user);
         String tble = user.getTable();
 
-        try {
-            if (bookingModel.isAccept(tble, "accepted")) {
-                System.out.println("Accepted");
+        Date today = new Date();
+        String confirmedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(today);
+
+        if (date.getValue() == null) {
+            System.out.println("Please choose a date");
+        } else{
+            try {
+//
+                bookingModel.updateTableStat(user.getTable(), "accepted", confirmedDate);
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 //        Stage stage = (Stage) book.getScene().getWindow();
 //        stage.close();
+    }
+    // action to cancel a table booking
+    public void Cancel(javafx.event.ActionEvent event){
+
+        Date confirmDateDate2 = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String cancelledDate = dateFormat.format(confirmDateDate2);
+
+        try {
+            String stats = bookingModel.getTableStatus(user.getTable());
+            String confirmDate = bookingModel.getConfirmationDate(user.getTable());
+
+            if(confirmDate != null && !confirmDate.isEmpty() && stats.equals("accepted")) {
+                Date confirmDateDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(confirmDate);
+                long a = confirmDateDate.getTime() / 1000 / 60 / 60;
+                long b = confirmDateDate2.getTime() / 1000 / 60 / 60;
+                if ((b - a) > 48) {
+                    System.out.println("a " + a);
+                    System.out.println("b " + b);
+                }else{
+                    System.out.println("ok table update ");
+                    bookingModel.updateTableStat(user.getTable(), "cancelled", cancelledDate);
+                }
+
+            }else{
+                System.out.println("ok else ");
+            }
+
+        } catch (SQLException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -8,13 +8,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="309.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.BookingDateController">
     <children>
-        <Label layoutX="36.0" layoutY="28.0" text="Booking Confirmation">
+        <DatePicker fx:id="date" layoutX="45.0" layoutY="82.0" visible="false" />
+        <Button fx:id="Cancel" layoutX="121.0" layoutY="136.0" mnemonicParsing="false" onAction="#Cancel" text="Cancel" />
+        <Label layoutX="64.0" layoutY="28.0" text="Manage Booking">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <Button layoutX="173.0" layoutY="118.0" mnemonicParsing="false" onAction="#Reject" text="Reject" />
-        <Button fx:id="accept" layoutX="59.0" layoutY="118.0" mnemonicParsing="false" onAction="#Accept" text="Accept" />
-      <DatePicker fx:id="date" layoutX="44.0" layoutY="63.0" visible="false" />
     </children>
 </Pane>

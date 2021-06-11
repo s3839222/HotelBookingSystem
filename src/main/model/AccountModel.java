@@ -26,11 +26,11 @@ public class AccountModel {
             return false;
         }
     }
-
+    // sql query to update the account informaiton that can be done by the admin only
     public boolean isAccountUpdate(String firstname, String surname, String age, String username, String password, String role, String question, String answer, String id) throws SQLException {
         PreparedStatement preparedStatement = null;
         int resultSet= 0;
-        String query = "UPDATE employee SET name =?, surname = ?, age =?, username =?, password = ?, role =?, secret_question =?, secret_answer = ? WHERE id = ?";
+        String query = "UPDATE employee SET name =?, surname = ?, age =?, username =?, password = ?, role =?, secret_question =?, secret_answer = ?, WHERE id = ?";
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstname);
@@ -61,6 +61,7 @@ public class AccountModel {
         }
 
     }
+    // sql query to delete the account and it can be done by the admin only
     public boolean isDelete( String id) throws SQLException {
         PreparedStatement preparedStatement = null;
         int resultSet= 0;
@@ -87,6 +88,7 @@ public class AccountModel {
         }
 
     }
+    // sql query to update the account informaiton that can be done by the employee
     public boolean isEmployeeUpdate(String firstname, String surname, String username, String password) throws SQLException {
         PreparedStatement preparedStatement = null;
         int resultSet= 0;

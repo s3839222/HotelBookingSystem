@@ -1,23 +1,19 @@
 package main.controller;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.model.BookingModel;
 import main.model.UserDetailModel;
 
-import javax.jws.soap.SOAPBinding;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,13 +27,16 @@ import java.util.ResourceBundle;
 public class BookingController implements Initializable {
     public BookingModel bookingModel = new BookingModel();
     public UserDetailModel userDetailModel = new UserDetailModel();
-    UserHolder holder = UserHolder.getInstance();
+    public UserHolder holder = UserHolder.getInstance();
     @FXML
     private AnchorPane anchorPane;
+
+
+
     private List<Rectangle> tables;
+    //initialize the table colours
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         tables = new ArrayList<>();
         try {
             User user =holder.getUser();
@@ -47,9 +46,10 @@ public class BookingController implements Initializable {
             System.out.println(userDetailModel.getRoleByUser(username));
             System.out.println(userDetailModel.getRoleByUser(username).equalsIgnoreCase("Admin"));
             if(userDetailModel.getRoleByUser(username).equalsIgnoreCase("Admin")){
-                System.out.println("ok");
-                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                      System.out.println("ok");
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date today = new Date();
+                String confirmedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(today);
                 String date_1 = formatter.format(today).toString();
                 String date_2 = null;
                 for(int j = 0; j < anchorPane.getChildren().size(); j++) {
@@ -63,41 +63,36 @@ public class BookingController implements Initializable {
                         String tble = anchorPane.getChildren().get(j).getId();
                         String stats = bookingModel.getTableStatus(tble);
                         if (stats.equalsIgnoreCase("pending")) {
-                            anchorPane.getChildren().get(j).setDisable(true);
+//                            anchorPane.getChildren().get(j).setDisable(true);
                             date_2 = bookingModel.getDateOfBooking(/*anchorPane.getChildren().get(j).getId()*/ tble);
                             if (!date_2.equals(date_1)) {
-                                bookingModel.updateTableStatus(anchorPane.getChildren().get(j).getId(), "Cancelled");
+                                bookingModel.updateTableStatus(anchorPane.getChildren().get(j).getId(), "pending", confirmedDate, user.getUsername());
                             }
                         }
                     }
 
                 }
             }
-//            for(int i = 0; i < length; i++){
-//                for(int j = 0; j < anchorPane.getChildren().size(); j++) {
-//                    if(bookingModel.getTableInfo().get(i).equals(anchorPane.getChildren().get(j).getId())) {
-//                        System.out.println(anchorPane.getChildren().get(j).getStyle());
-//                        anchorPane.getChildren().get(j).setStyle("-fx-fill: pink");
-//                    }
-//
-//                   // System.out.println(anchorPane.getChildren().get(j).getId());
-//                }
-//            }
-
             if(userDetailModel.getRoleByUser(user.getUsername()).equals("Employee")){
                 for(int j = 0; j < anchorPane.getChildren().size(); j++) {
-
                     String tble = anchorPane.getChildren().get(j).getId();
                     String status = bookingModel.getTableStatus(tble);
                     if(status.equalsIgnoreCase("accepted") && status != null){
                         anchorPane.getChildren().get(j).setStyle("-fx-fill: red;");
-                        anchorPane.getChildren().get(j).setDisable(true);
+                        if(bookingModel.getUserOfBooking(tble).equalsIgnoreCase(user.getUsername())){
+                            anchorPane.getChildren().get(j).setDisable(false);
+                            System.out.println("in if after disable = false");
+                        }else {
+                            anchorPane.getChildren().get(j).setDisable(true);
+                        }
                     }else if(status.equalsIgnoreCase("Lockdown") && status != null){
+                        anchorPane.getChildren().get(j).setStyle("-fx-fill: orange;");
+                        anchorPane.getChildren().get(j).setDisable(true);
+                    }else if (status.equalsIgnoreCase("Social Distance") && status != null) {
                         anchorPane.getChildren().get(j).setStyle("-fx-fill: orange;");
                         anchorPane.getChildren().get(j).setDisable(true);
                     }else if(status.equalsIgnoreCase("pending") && status != null){
                         anchorPane.getChildren().get(j).setStyle("-fx-fill: pink;");
-                        anchorPane.getChildren().get(j).setDisable(true);
                     }
                 }
             }
@@ -108,6 +103,8 @@ public class BookingController implements Initializable {
                     if(status.equalsIgnoreCase("accepted")&& status != null){
                         anchorPane.getChildren().get(i).setStyle("-fx-fill: red;");
                     }else if(status.equalsIgnoreCase("Lockdown") && status != null){
+                        anchorPane.getChildren().get(i).setStyle("-fx-fill: orange;");
+                    }else if (status.equalsIgnoreCase("Social Distance") && status != null) {
                         anchorPane.getChildren().get(i).setStyle("-fx-fill: orange;");
                     }
                     else if(status.equalsIgnoreCase("pending") && status != null){
@@ -122,6 +119,8 @@ public class BookingController implements Initializable {
     }
 
 
+
+    // popup for table booking
     public void Table() throws IOException {
         System.out.println("In table");
         Stage popupWindow = new Stage();
@@ -130,6 +129,7 @@ public class BookingController implements Initializable {
         popupWindow.setScene(new Scene(root));
         popupWindow.showAndWait();
     }
+    // popup for table booking confiramtion
     public void ConfirmBooking() throws IOException {
         System.out.println("In confirmation");
         Stage popupWindow = new Stage();
@@ -139,19 +139,31 @@ public class BookingController implements Initializable {
         popupWindow.setScene(new Scene(root));
         popupWindow.showAndWait();
     }
+    // popup for table booking cancelation
+    public void CancelBooking() throws IOException {
+        System.out.println("In cancelation");
+        Stage popupWindow = new Stage();
+        popupWindow.initModality(Modality.APPLICATION_MODAL);
+        popupWindow.setTitle("Booking Management");
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/bookingCancel.fxml"));
+        popupWindow.setScene(new Scene(root));
+        popupWindow.showAndWait();
+    }
+    //whitelist so same user cannot sit on the same table again
     public Boolean WhiteList(String username, String table) throws SQLException {
         int length = bookingModel.getTableByUsername(username).size();
         System.out.println("length: " + length);
+        User u = holder.getUser();
+
         for(int i = 0; i < length; i++){
-            if(bookingModel.getTableByUsername(username).get(i).
-                    equals(table) == true){
-                System.out.println("true: " + anchorPane.getChildren().get(i));
+            if(bookingModel.getUserTables(username).get(i).equals(table)){
                 return true;
             }
         }
         return false;
     }
 
+    // action to popup book a table, confirm booking and cancel booking
     public void BookTable(javafx.scene.input.MouseEvent mouseEvent) throws SQLException, IOException {
         final Node src = (Node) mouseEvent.getSource();
         User u = holder.getUser();
@@ -162,47 +174,39 @@ public class BookingController implements Initializable {
         String status = bookingModel.getTableStatus(tble);
         System.out.println("stat: " + status);
 
-
-        if(WhiteList(user, id) == true){
-            System.out.println("please choose a different table");
+        if(WhiteList(user, id) == true && userDetailModel.getRoleByUser(u.getUsername()).equals("Employee")){
+            if(bookingModel.getUserOfBooking(tble).equals(u.getUsername()) && status.equalsIgnoreCase("accepted")){
+                System.out.println("in emp in whitelist");
+                CancelBooking();
+                System.out.println("In book cancel: " + u.getUsername());
+                System.out.println("str: " + u.getTable());
+            }
+                System.out.println("please choose a different table");
         }else {
             if(bookingModel.OneBookPerUser(user)){
                 System.out.println("you have already booked: " + user);
-                if(userDetailModel.getRoleByUser(u.getUsername()).equals("Admin") && status.equals("accepted")){
-                    System.out.println("in accepted window in onebookperuser");
-                    ConfirmBooking();
-                }else if(userDetailModel.getRoleByUser(u.getUsername()).equals("Admin") && status.equals("pending")) {
-                    System.out.println("in pending window in onebookperuser");
-                    ConfirmBooking();
-                }
             }else {
                 if(userDetailModel.getRoleByUser(u.getUsername()).equals("Admin") && status.equals("accepted")){
-                    System.out.println("in accepted window");
+                    System.out.println("in accepted  after white lsit window");
                     ConfirmBooking();
                 }else if(userDetailModel.getRoleByUser(u.getUsername()).equals("Admin") && status.equals("pending")){
                     System.out.println("in pending window");
                     ConfirmBooking();
                 }else if(userDetailModel.getRoleByUser(u.getUsername()).equals("Admin") && status == null){
-                    System.out.println("in emp");
                     Table();
-//                    long day = u.getDate();
                     System.out.println("In book popup: " + u.getUsername());
                     System.out.println("str: " + u.getTable());
-
                 }
                 else if(userDetailModel.getRoleByUser(u.getUsername()).equals("Employee")){
-                    System.out.println("in emp");
                     Table();
-//                    long day = u.getDate();
                     System.out.println("In book popup: " + u.getUsername());
                     System.out.println("str: " + u.getTable());
+                }else if(status.equals("pending")){
+                    System.out.println("Table pending");
                 }else{
-                    System.out.println("stat : " + status);
-//                    ConfirmBooking();
                     Table();
                 }
             }
-
         }
     }
 }

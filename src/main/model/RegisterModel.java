@@ -28,7 +28,7 @@ public class RegisterModel {
             return false;
         }
     }
-//name, surname, age, username, password, role, secret_question, secret_answer
+    // sql to query to insert new usrs to the database
     public boolean isRegister(String firstname, String surname, String age, String username, String password, String role, String question, String answer) throws SQLException {
         PreparedStatement preparedStatement = null;
         boolean resultSet = false;

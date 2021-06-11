@@ -116,9 +116,8 @@ public class AdminAccountController implements Initializable {
         }
 
     }
-
+    //Action to find details of a specific registered user
     public void Find(ActionEvent event) throws SQLException {
-
         ID = txtID.getText();
         String qs = usrMOdel.getSecretQsByID(ID);
         String ans = usrMOdel.getSecretAns(ID);
@@ -128,7 +127,6 @@ public class AdminAccountController implements Initializable {
         String age = usrMOdel.getAge(ID);
         String name = usrMOdel.getFirstName(ID);
         String surname = usrMOdel.getSurname(ID);
-
         if(ID.equals("")){
             isConnected.setText("Please enter an ID");
         }else {
@@ -142,7 +140,6 @@ public class AdminAccountController implements Initializable {
             txtAge.setText(age);
             txtFirstname.setText(name);
             txtSurname.setText(surname);
-
             txtAnswer.setVisible(true);
             txtNewPassword.setVisible(true);
             txtQuestion.setVisible(true);
@@ -155,7 +152,6 @@ public class AdminAccountController implements Initializable {
             txtNewRole.setVisible(true);
             updateButton.setVisible(true);
             isDeleteAcc.setVisible(true);
-
             isName.setVisible(true);
             isSurname.setVisible(true);
             isPass.setVisible(true);
@@ -164,14 +160,11 @@ public class AdminAccountController implements Initializable {
             isAge.setVisible(true);
             isRole.setVisible(true);
             isUsername.setVisible(true);
-
-            //txtID.setEditable(false);
             txtRole.setEditable(false);
             txtQuestion.setEditable(false);
         }
-
     }
-
+    // action to manage an account by updating any information that are changed
     public void Manage(ActionEvent event) {
         String firstname =txtFirstname.getText();
         String surname =txtSurname.getText();
@@ -182,9 +175,6 @@ public class AdminAccountController implements Initializable {
         String question =(String) txtNewQuestion.getValue();
         String answer =txtAnswer.getText();
         String id =txtID.getText();
-
-
-
         try {
             if(firstname.equals("") || surname.equals("") || age.equals("") || username.equals("")|| password.equals("")||
                     role.equals("")|| question.equals("")|| answer.equals("")){
@@ -205,7 +195,7 @@ public class AdminAccountController implements Initializable {
         }
 
     }
-
+    // action to delete an account from the database
     public void Delete(ActionEvent event){
         String id =txtID.getText();
         try {

@@ -52,7 +52,7 @@ public class RegisterController implements Initializable{
 
 
 
-    // Check database connection
+    // Check database connection, initialize the question and roles
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ObservableList<String> questions = FXCollections.observableArrayList(
@@ -72,7 +72,7 @@ public class RegisterController implements Initializable{
         }
 
     }
-
+    // action to register and check if user input is the same as database.
     public void Register(ActionEvent event){
         String firstname =txtFirstname.getText();
         String surname =txtSurname.getText();
@@ -114,7 +114,7 @@ public class RegisterController implements Initializable{
 //
 
     }
-
+    // cancel registration and back to login page
     public void cancelButtonAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
         Node node = (Node) event.getSource();

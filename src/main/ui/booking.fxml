@@ -25,5 +25,6 @@
       <Label fx:id="redID" layoutX="489.0" layoutY="57.0" text="Red" textFill="RED" />
       <Label fx:id="orangeID" layoutX="464.0" layoutY="77.0" text="Orange" textFill="#ff9f00" />
       <Label fx:id="pinkID" layoutX="488.0" layoutY="34.0" text="Pink" textFill="#ff0095" />
+      <Label fx:id="table1Username" layoutX="96.0" layoutY="190.0" />
    </children>
 </AnchorPane>

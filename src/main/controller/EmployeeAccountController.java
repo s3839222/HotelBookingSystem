@@ -67,24 +67,11 @@ public class EmployeeAccountController implements Initializable {
         txtUsername.setText(username);
         txtUsername.setEditable(false);
 
-//        updateButton.setVisible(false);
-//        txtAnswer.setVisible(false);
-//        txtNewPassword.setVisible(false);
-//        txtFirstname.setVisible(false);
-//        txtSurname.setVisible(false);
-//
-//        isName.setVisible(false);
-//        isSurname.setVisible(false);
-//        isPass.setVisible(false);
 
 
 
         System.out.println("isUsername:" + username);
 
-//        ObservableList<String> questions = FXCollections.observableArrayList(
-//                "What is your favourite fruit","What is your favourite food",
-//                "Who is your favourite superhero");
-//        txtNewQuestion.setItems(questions);
 
 
         if (accountModel.isDbConnected()){
@@ -96,43 +83,22 @@ public class EmployeeAccountController implements Initializable {
         }
 
     }
-
+    // action to Find employee details
     public void Find(ActionEvent event) throws SQLException {
 
         ID = usrMOdel.getIDByUser(txtUsername.getText());
-//        String qs = usrMOdel.getSecretQsByID(ID);
-//        String ans = usrMOdel.getSecretAns(ID);
         String pass = usrMOdel.getPassword(ID);
-//        String age = usrMOdel.getAge(ID);
         String name = usrMOdel.getFirstName(ID);
         String surname = usrMOdel.getSurname(ID);
 
 
-//        System.out.println(qs);
-//        txtQuestion.setText(qs);
-//        txtAnswer.setText(ans);
         txtNewPassword.setText(pass);
-//        txtQuestion.setText(qs);
-//        txtAge.setText(age);
         txtFirstname.setText(name);
         txtSurname.setText(surname);
 
 
-//        updateButton.setVisible(true);
-//        txtAnswer.setVisible(true);
-//        txtNewPassword.setVisible(true);
-//        txtFirstname.setVisible(true);
-//        txtSurname.setVisible(true);
-//
-//        isName.setVisible(true);
-//        isSurname.setVisible(true);
-//        isPass.setVisible(true);
-
-
     }
-
-//
-
+    // action to update employee details
     public void Manage(ActionEvent event) {
         UserHolder holder = UserHolder.getInstance();
         User u = holder.getUser();
@@ -149,10 +115,7 @@ public class EmployeeAccountController implements Initializable {
                 isConnected.setText("Please fill in all the detail");
             }else {
                 if (accountModel.isEmployeeUpdate(firstname, surname, username, password)) {
-
                     isConnected.setText("Account has been updated");
-
-
                 } else {
                     isConnected.setText("Please fill in the form to make changes to your account");
                 }

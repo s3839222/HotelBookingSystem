@@ -67,7 +67,7 @@ public class ResetController implements Initializable{
             isConnected.setText("Not Connected");
         }
     }
-
+    // action to get detail of the user for them to rest their pass
     public void Submit(ActionEvent event) throws SQLException {
 
         userName = txtUsername.getText();
@@ -85,6 +85,7 @@ public class ResetController implements Initializable{
         NP.setVisible(true);
 
     }
+    // action to rese the users password
     public void Reset(ActionEvent event) {
         String username =txtUsername.getText();
         String answer =txtAnswer.getText();
@@ -109,7 +110,7 @@ public class ResetController implements Initializable{
             e.printStackTrace();
         }
     }
-
+    // navigate back to the login page
     public void Login(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
         Node node = (Node) event.getSource();

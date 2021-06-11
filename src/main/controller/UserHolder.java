@@ -1,5 +1,6 @@
 package main.controller;
 
+// User and UserHolder are singletons
 public class UserHolder {
     private User user;
     private final static UserHolder INSTANCE = new UserHolder();

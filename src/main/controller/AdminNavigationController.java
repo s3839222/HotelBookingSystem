@@ -44,7 +44,7 @@ public class AdminNavigationController implements Initializable {
 
     }
 
-
+    // navigate to the account management
     public void account(javafx.event.ActionEvent event) throws IOException{
         UserHolder holder = UserHolder.getInstance();
         User u = holder.getUser();
@@ -56,22 +56,32 @@ public class AdminNavigationController implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(root);
     }
+    // navigate to booking management
     public void booking(javafx.event.ActionEvent event) throws IOException{
 
         Parent root = FXMLLoader.load(getClass().getResource("../ui/booking.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(root);
     }
+    // navigate to report management
     public void report(javafx.event.ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../ui/report.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(root);
     }
+    // navigate to covid condition managment
     public void tableAllocation(javafx.event.ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../ui/tableAllocation.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(root);
     }
+    // navigate to see the table details
+    public void tableDetails(javafx.event.ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/viewTables.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(root);
+    }
+    // action to signout
     public void signout(javafx.event.ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
         Node node = (Node) event.getSource();
@@ -79,6 +89,7 @@ public class AdminNavigationController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    // navigate to home
     public void home(javafx.event.ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("../ui/adminNavigation.fxml"));
         Node node = (Node) event.getSource();
@@ -86,4 +97,5 @@ public class AdminNavigationController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
 }

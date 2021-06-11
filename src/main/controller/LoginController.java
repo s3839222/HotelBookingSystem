@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
         }
 
     }
-
+    // action to navigate to register page
     public  void registerButtonAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../ui/register.fxml"));
         Node node = (Node) event.getSource();
@@ -56,7 +56,7 @@ public class LoginController implements Initializable {
     }
 
 
-
+    // action to reset password page
     public  void resetButtonAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../ui/reset.fxml"));
 
@@ -104,7 +104,7 @@ public class LoginController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    // action to quit the application
     public void cancelButtonAction(ActionEvent event){
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
